@@ -1,6 +1,8 @@
 name: Joe - Sync Repos
 
-on: [push]
+on:
+  schedule: 
+  - cron: "*/15 * * * *" # every 15 minutes. set to whatever interval you like
 
 jobs:
   sync:
@@ -10,7 +12,7 @@ jobs:
     - uses: repo-sync/github-sync@v2
       name: Sync repo to branch
       with:
-        source_repo: https://github.com/joe-choi-dev/test2
+        source_repo: https://github.com/joe-choi-dev/test1
         source_branch: main
         destination_branch: main
         github_token: ${{ secrets.GITHUB_TOKEN }}
