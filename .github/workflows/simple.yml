@@ -1,6 +1,6 @@
 name: Joe - Sync Repos
 
-# on: [push]
+on: [push]
 
 jobs:
   sync:
