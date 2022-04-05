@@ -11,6 +11,7 @@ jobs:
           git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
           git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
         if: env.git_sync_source_repo && env.git_sync_destination_repo
+          run: echo "source ${{env.git_sync_source_repo}} && dest ${{env.git_sync_destination_repo}}"
         uses: wei/git-sync@v3
         with:
           source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
