@@ -6,22 +6,22 @@ jobs:
   git-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: echo test
+      - name: sync
         env:
           git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
           git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
         run: | 
           echo "source ${{env.git_sync_source_repo}} && dest ${{env.git_sync_destination_repo}}"
-      - name: sync
-        env:
-          git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
-          git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
-        if: env.git_sync_source_repo && env.git_sync_destination_repo
-        uses: wei/git-sync@v3
-        with:
-          source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
-          source_branch: "main"
-          destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
-          destination_branch: "main"
-          source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
-          destination_ssh_private_key:  ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
+      # - name: sync
+      #   env:
+      #     git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
+      #     git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
+      #   if: env.git_sync_source_repo && env.git_sync_destination_repo
+      #   uses: wei/git-sync@v3
+      #   with:
+      #     source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
+      #     source_branch: "main"
+      #     destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
+      #     destination_branch: "main"
+      #     source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
+      #     destination_ssh_private_key:  ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
