@@ -6,6 +6,12 @@ jobs:
   git-sync:
     runs-on: ubuntu-latest
     steps:
+      - name: echo test
+        env:
+          git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
+          git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
+        run: | 
+          echo "source ${{env.git_sync_source_repo}} && dest ${{env.git_sync_destination_repo}}"
       - name: sync
         env:
           git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
@@ -19,6 +25,3 @@ jobs:
           destination_branch: "main"
           source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
           destination_ssh_private_key:  ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
-        run: | 
-          echo "source ${{env.git_sync_source_repo}} && dest ${{env.git_sync_destination_repo}}"
-
