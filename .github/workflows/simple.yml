@@ -6,13 +6,16 @@ jobs:
   git-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: git-sync
+      - name: sync
+        env:
+          git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
+          git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
+        if: env.git_sync_source_repo && env.git_sync_destination_repo
         uses: wei/git-sync@v3
         with:
-          source_repo: "git@github.com:joe-choi-dev/test1.git"
+          source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
           source_branch: "main"
-          destination_repo: "git@github.com:joe-choi-dev/test2.git"
+          destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
           destination_branch: "main"
-          # ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} # optional
-          # source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          # destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+          source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
+          destination_ssh_private_key:  ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
