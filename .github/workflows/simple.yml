@@ -10,7 +10,6 @@ jobs:
         with:
           repository: 'wei/git-sync'
           path: 'git-sync'
-    repository: ''
       - name: git-sync
         # uses: wei/git-sync@v3
         uses: "$GITHUB_WORKSPACE/git-sync"
