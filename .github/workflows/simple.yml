@@ -1,4 +1,4 @@
-name: Repo Sync
+name: sync
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
   - cron: "*/5 * * * *"
 
 jobs:
-  repo-sync:
-    name: Repo Sync
+  sync:
+    name: sync
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
