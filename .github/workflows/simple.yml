@@ -15,13 +15,18 @@ jobs:
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           echo "github.workspace = ${{ github.workspace }}"
           ls "${{ github.workspace }}/git-sync"
-      - name: git-sync
-        # uses: wei/git-sync@v3
-        uses: "home/runner/work/test1/test1/git-sync"
-        with:
-          source_repo: "git@github.com:joe-choi-dev/test1.git"
-          source_branch: "main"
-          destination_repo: "git@github.com:joe-choi-dev/test2.git"
-          destination_branch: "main"
-          source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-          destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+          ls ./actions
+      - name: docker
+        run: |
+          docker run --rm -e "SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)" $(docker build -q .) \
+          $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
+      # - name: git-sync
+      #   # uses: wei/git-sync@v3
+      #   uses: "home/runner/work/test1/test1/git-sync"
+      #   with:
+      #     source_repo: "git@github.com:joe-choi-dev/test1.git"
+      #     source_branch: "main"
+      #     destination_repo: "git@github.com:joe-choi-dev/test2.git"
+      #     destination_branch: "main"
+      #     source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+      #     destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
