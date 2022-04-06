@@ -15,14 +15,13 @@ jobs:
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           echo "github.workspace = ${{ github.workspace }}"
           ls "${{ github.workspace }}/git-sync"
-
-      # - name: git-sync
-      #   # uses: wei/git-sync@v3
-      #   uses: ${{GITHUB_WORKSPACE}}
-      #   with:
-      #     source_repo: "git@github.com:joe-choi-dev/test1.git"
-      #     source_branch: "main"
-      #     destination_repo: "git@github.com:joe-choi-dev/test2.git"
-      #     destination_branch: "main"
-      #     source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
-      #     destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+      - name: git-sync
+        # uses: wei/git-sync@v3
+        uses: ${{ github.workspace }}/git-sync
+        with:
+          source_repo: "git@github.com:joe-choi-dev/test1.git"
+          source_branch: "main"
+          destination_repo: "git@github.com:joe-choi-dev/test2.git"
+          destination_branch: "main"
+          source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+          destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
