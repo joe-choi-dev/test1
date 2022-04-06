@@ -17,7 +17,7 @@ jobs:
           ls "${{ github.workspace }}/git-sync"
       - name: git-sync
         # uses: wei/git-sync@v3
-        uses: ${{ github.workspace }}/git-sync
+        uses: "${{ github.workspace }}/git-sync"
         with:
           source_repo: "git@github.com:joe-choi-dev/test1.git"
           source_branch: "main"
