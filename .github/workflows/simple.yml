@@ -17,4 +17,7 @@ jobs:
         source_repo: git@github.com:joe-choi-dev/test1.git
         source_branch: main
         destination_branch: main
-        github_token: ${{ secrets.SSH_PRIVATE_KEY }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        - args: 
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
