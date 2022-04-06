@@ -1,21 +1,19 @@
-name: Joe - Sync Repos
+name: Repo Sync
 
-on: push
+on:
+  schedule: 
+  - cron: "*/5 * * * *" # every 5 minutes. set to whatever interval you like
 
 jobs:
-  git-sync:
+  repo-sync:
+    name: Repo Sync
     runs-on: ubuntu-latest
     steps:
-      - name: sync
-        env:
-          git_sync_source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
-          git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
-        if: env.git_sync_source_repo && env.git_sync_destination_repo
-        uses: wei/git-sync@v3
-        with:
-          source_repo: ${{ secrets.GIT_SYNC_SOURCE_REPO }}
-          source_branch: "main"
-          destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
-          destination_branch: "main"
-          source_ssh_private_key: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
-          destination_ssh_private_key:  ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
+    - uses: actions/checkout@v2
+    - uses: repo-sync/github-sync@v2
+      name: Sync repo to branch
+      with:
+        source_repo: git@github.com:joe-choi-dev/test1.git
+        source_branch: main
+        destination_branch: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
