@@ -14,6 +14,7 @@ jobs:
     - uses: repo-sync/github-sync@v2
       name: Sync repo to branch
       with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         source_repo: git@github.com:joe-choi-dev/test1.git
         source_branch: main
         destination_branch: main
