@@ -15,9 +15,9 @@ jobs:
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           echo "github.workspace = ${{ github.workspace }}"
           ls "${{ github.workspace }}/git-sync"
-          ls ./actions
       - name: docker
         run: |
+          cd "${{ github.workspace }}/git-sync"
           docker run --rm -e "SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)" $(docker build -q .) \
           $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
       # - name: git-sync
