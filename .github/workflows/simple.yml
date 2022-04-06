@@ -5,8 +5,15 @@ jobs:
   git-sync:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 'wei/git-sync'
+          path: 'git-sync'
+    repository: ''
       - name: git-sync
-        uses: wei/git-sync@v3
+        # uses: wei/git-sync@v3
+        uses: "$GITHUB_WORKSPACE/git-sync"
         with:
           source_repo: "git@github.com:joe-choi-dev/test1.git"
           source_branch: "main"
