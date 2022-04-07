@@ -22,16 +22,15 @@ jobs:
           git remote add dest git@github.com:joe-choi-dev/test2.git
           git remote -v
 
-          # store destination ssh key
+          echo "store ssh key"
           mkdir -p ssh
           ls
-          # quick check
           ls ssh
           echo "$DESTINATION_SSH_PRIVATE_KEY" > ssh/dst_rsa
           chmod 600 ssh/dst_rsa
           ls ssh
           
-          # git push branch to remote
+          echo "enter push step"
           git config --local core.sshCommand "/usr/bin/ssh -i /ssh/dst_rsa"
           git --no-pager branch -a -vv
           git push dest prod:prod -f
