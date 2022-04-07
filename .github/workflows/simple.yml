@@ -18,13 +18,15 @@ jobs:
       - name: echo
         run: |
           echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
-          echo "github.workspace = ${{ github.workspace }}"
+          echo "src_key = $SRC_KEY"
+          echo "dest_key = $DEST_KEY"
           ls "${{ github.workspace }}/git-sync"
       - name: docker
+        if: env.SRC_KEY && env.DEST_KEY
         run: |
           cd "${{ github.workspace }}/git-sync"
           docker run --rm -e "source_ssh_private_key=$SRC_KEY" -e "destination_ssh_private_key=$DEST_KEY" $(docker build -q .) \
-          joe-choi-dev/test1 main joe-choi-dev/test2 main
+          git@github.com:joe-choi-dev/test1.git main git@github.com:joe-choi-dev/test2.git main
       # - name: git-sync
       #   # uses: wei/git-sync@v3
       #   uses: "home/runner/work/test1/test1/git-sync"
