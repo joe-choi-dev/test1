@@ -28,12 +28,14 @@ jobs:
           ls ssh
           echo "$DESTINATION_SSH_PRIVATE_KEY" > ssh/dst_rsa
           chmod 600 ssh/dst_rsa
-          ls ssh
+          stat ssh/dst_rsa
           
-          echo "enter push step"
+          echo "setup ssh in git"
           git config --local core.sshCommand "/usr/bin/ssh -i /ssh/dst_rsa"
           git --no-pager branch -a -vv
-          git push dest prod:prod -f
+
+          echo "push"
+          git push dest main:main -f
         env:
           DESTINATION_SSH_PRIVATE_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
