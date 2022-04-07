@@ -24,8 +24,11 @@ jobs:
 
           # store destination ssh key
           mkdir -p ssh
-          echo "$DESTINATION_SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' > /ssh/dst_rsa
-          chmod 600 /ssh/dst_rsa
+          ls
+          # quick check
+          ls ssh
+          echo "$DESTINATION_SSH_PRIVATE_KEY" > ssh/dst_rsa
+          chmod 600 ssh/dst_rsa
           ls ssh
           
           # git push branch to remote
@@ -35,7 +38,7 @@ jobs:
         env:
           DESTINATION_SSH_PRIVATE_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
-
+#           echo "$DESTINATION_SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' > /ssh/dst_rsa
 # on:
 #   push:
 #     branches: [ main ]
