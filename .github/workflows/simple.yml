@@ -38,7 +38,8 @@ jobs:
           echo "src_key = $SRC_KEY"
           echo "dest_key = $DEST_KEY"
           ls "${{ github.workspace }}/git-sync"
-          ls ./.github/actions
+          ls ./.github
+          ls ./.github/workflows
       - name: git-sync
         uses: ./.github/actions/git-sync
         with:
