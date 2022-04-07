@@ -21,7 +21,7 @@
 #   SRC_KEY: ${{secrets.SOURCE_SSH_PRIVATE_KEY}}
 #   DEST_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
-# on: push
+on: push
 
 jobs:
   git-sync:
