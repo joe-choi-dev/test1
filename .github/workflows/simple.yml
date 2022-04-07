@@ -5,15 +5,21 @@ on:
     branches: [ main ]
 jobs:
   asdf:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v2
         with:
           token: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
           fetch-depth: 0
-      - run: |
+      - name: sync
+        run: |
           git remote add mck-priv git@github.com:joe-choi-dev/test2.git
           git push --set-upstream mck-priv main
-
+        env:
+          token: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
+          fetch-depth: 0
+        
 # env:
 #   SRC_KEY: ${{secrets.SOURCE_SSH_PRIVATE_KEY}}
 #   DEST_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
@@ -22,7 +28,7 @@ jobs:
 
 # jobs:
 #   git-sync:
-#     runs-on: ubuntu-latest
+
 #     steps:
 #       - name: checkout
 #         uses: actions/checkout@v3
