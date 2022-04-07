@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.SOURCE_SSH_PRIVATE_KEY }}
-          fetch-depth: 0
       - name: sync
         run: |
           git remote add mck-priv git@github.com:joe-choi-dev/test2.git
