@@ -1,6 +1,11 @@
 # .github/workflows/git-sync.yml
 
+env:
+  SRC_KEY: ${{secrets.SOURCE_SSH_PRIVATE_KEY}}
+  DEST_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
+
 on: push
+
 jobs:
   git-sync:
     runs-on: ubuntu-latest
@@ -18,7 +23,7 @@ jobs:
       - name: docker
         run: |
           cd "${{ github.workspace }}/git-sync"
-          docker run --rm -e "source_ssh_private_key=${{ secrets.SOURCE_SSH_PRIVATE_KEY }}" -e "destination_ssh_private_key=${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}" $(docker build -q .) \
+          docker run --rm -e "source_ssh_private_key=$SRC_KEY" -e "destination_ssh_private_key=$DEST_KEY" $(docker build -q .) \
           git@github.com:joe-choi-dev/test1.git main git@github.com:joe-choi-dev/test2.git main
       # - name: git-sync
       #   # uses: wei/git-sync@v3
