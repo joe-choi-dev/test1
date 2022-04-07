@@ -3,7 +3,7 @@
 on:
   push:
     branches: [ main ]
-job:
+jobs:
   asdf:
     steps:
       - uses: actions/checkout@v2
