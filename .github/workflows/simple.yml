@@ -23,12 +23,10 @@ jobs:
           git remote -v
 
           # store destination ssh key
-          mkdir -p /root/.ssh
-          echo "$DESTINATION_SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' >/root/.ssh/dst_rsa
-          chmod 600 /root/.ssh/dst_rsa
           mkdir -p ~/.ssh
-          cp /root/.ssh/* ~/.ssh/ 2>/dev/null || true
-
+          echo "$DESTINATION_SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' >/.ssh/dst_rsa
+          chmod 600 /.ssh/dst_rsa
+          
           # git push branch to remote
           git config --local core.sshCommand "/usr/bin/ssh -i ~/.ssh/dst_rsa"
           git --no-pager branch -a -vv
