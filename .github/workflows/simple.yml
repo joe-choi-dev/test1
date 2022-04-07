@@ -31,12 +31,11 @@ jobs:
           stat ssh/dst_rsa
           
           echo "setup ssh in git"
-          git fetch --unshallow dest
           git config --local core.sshCommand "/usr/bin/ssh -i ssh/dst_rsa"
           git --no-pager branch -a -vv
 
           echo "push"
-          git push dest main:main -f
+          git push dest main:temp -f
         env:
           DESTINATION_SSH_PRIVATE_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
