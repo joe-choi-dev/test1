@@ -41,7 +41,7 @@ jobs:
           # git log
 
           echo "push final"
-          git push --all dest HEAD:main -f
+          git push dest HEAD:main -f
         env:
           DESTINATION_SSH_PRIVATE_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
 
