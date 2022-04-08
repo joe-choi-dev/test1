@@ -35,7 +35,7 @@ jobs:
           echo "setup ssh in git"
           git config --local core.sshCommand "/usr/bin/ssh -i ssh/dst_rsa"
           git --no-pager branch -a -vv
-          git fetch git@github.com:joe-choi-dev/test2.git '+refs/heads/*:refs/heads/*' --update-head-ok
+          # git fetch git@github.com:joe-choi-dev/test2.git '+refs/heads/*:refs/heads/*' --update-head-ok
 
           echo "push"
           git log
