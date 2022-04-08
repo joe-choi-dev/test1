@@ -14,7 +14,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: git-logs
         run: |
           # check logs
@@ -38,6 +38,8 @@ jobs:
           git fetch git@github.com:joe-choi-dev/test2.git '+refs/heads/*:refs/heads/*' --update-head-ok
 
           echo "push"
+          git reset HEAD~1
+          git pull
           git push dest HEAD:main -f
         env:
           DESTINATION_SSH_PRIVATE_KEY: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }}
